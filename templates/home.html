@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>{{ message }}</h2>
+    <p>This is the landing page.</p>
+    <a href="{{ url_for('create_entry') }}" class="button">Create New Request</a>
+
+    <h3>Employee List (for reference)</h3>
+    <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Manager Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.role }}</td>
+                <td>{{ employee.manager_email | default('N/A') }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">No employees found. Please check seeding script.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Summary of Value Engineering Entries</h3>
+    <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Submitted By</th>
+                <th>Discipline</th>
+                <th>Project</th>
+                <th>Region</th>
+                <th>Status</th>
+                <th>Manager Approval</th>
+                <th>PEO Approval</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in ve_entries_summary %}
+            <tr>
+                <td>{{ entry.id }}</td>
+                <td>{{ entry.submitter_name }}</td>
+                <td>{{ entry.discipline_name }}</td>
+                <td>{{ entry.project_name }}</td>
+                <td>{{ entry.region_name }}</td>
+                <td>{{ entry.status }}</td>
+                <td>{{ entry.manager_approval_status | default('Pending') }}</td>
+                <td>{{ entry.peo_approval_status | default('Pending') }}</td>
+                <td><button onclick="alert('View details for ID {{ entry.id }}')">View Details</button></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="9">No VE entries found yet. Create one!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

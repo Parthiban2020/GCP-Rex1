@@ -1,0 +1,11 @@
+.gcloudignore
+.git
+.gitignore
+venv/
+.env # Do NOT include your local .env file in the container image!
+# site.db # Your local SQLite DB
+__pycache__/
+*.pyc
+*.egg-info/
+.DS_Store
+.vscode/
