@@ -165,7 +165,7 @@ def home():
      .order_by(VEEntry.creation_date.desc()).all() 
 
     return render_template('home.html', 
-                           message="Welcome to Value Engineering App!", 
+                           message="Welcome to Value Engineering App-test!", 
                            employees=employees, 
                            ve_entries_summary=ve_entries_summary)
 
