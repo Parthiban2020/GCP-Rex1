@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <form method="POST" action="{{ url_for('Add') }}">
+        <input type="text" name="title" placeholder="Todo Title" required>
+        <textarea name="content" placeholder="Todo Content" required></textarea>
+        <button type="submit">Add Todo</button>
+    </form> -->
+<div class="container-fluid flex-grow-1 container-p-y">
+    <div class="text-muted small mt-0 mb-2 breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+            <li class="breadcrumb-item active">Return on Experience</li>
+        </ol>
+    </div>
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="POST" action="https://us-central1-in-eng-insource-qms-dev.cloudfunctions.net/uploadReceipt" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
+            </form>
+            <a target="_blank" href="{{ url_for('uploaded_file', filename=filename) }}">{{ filename }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

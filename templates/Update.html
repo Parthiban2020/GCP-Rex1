@@ -1,0 +1,359 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid flex-grow-1 container-p-y">
+    <div class="text-muted small mt-0 mb-2 breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+            <li class="breadcrumb-item active">Rex View</li>
+        </ol>
+    </div>
+
+    <div class="card box-shadow mb-5">
+        <h6 class="card-header-title">Return On experience</h6>
+        <div class="card-body">
+            <div class="card-div box-shadow">
+                <form method="POST" action="/updateRexEntry/{{ id }}">
+                    {{ returnOFExperienceform.csrf_token }}
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">Project No. & Name:</label>
+                            {{ returnOFExperienceform.ProjectNameAndNumber }}
+                            <div class="clearfix"></div>
+                            {% for error in returnOFExperienceform.ProjectNameAndNumber.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">Region:</label>
+                            {{ returnOFExperienceform.Region }}
+                            <div class="clearfix"></div>
+                            {% for error in returnOFExperienceform.Region.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.REXInitiatingDiscipline.label
+                                }}</label>
+                            {{ returnOFExperienceform.REXInitiatingDiscipline }}
+                            {% for error in returnOFExperienceform.REXInitiatingDiscipline.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.REXInitiator.label }}</label>
+                            {{ returnOFExperienceform.REXInitiator}}
+                            {% for error in returnOFExperienceform.REXInitiator.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.REXOnDiscipline.label
+                                }}</label>
+                            {{ returnOFExperienceform.REXOnDiscipline }}
+                            {% for error in returnOFExperienceform.REXOnDiscipline.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.REXOnTopic.label }}</label>
+                            {{ returnOFExperienceform.REXOnTopic(class="custom-select") }}
+                            {% for error in returnOFExperienceform.REXOnTopic.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.REXDescription.label }}</label>
+                            {{ returnOFExperienceform.REXDescription }}
+                            {% for error in returnOFExperienceform.REXDescription.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.Impact.label }}</label>
+                            {{ returnOFExperienceform.Impact(class="custom-select") }}
+                            {% for error in returnOFExperienceform.Impact.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.AttachmentLink.label }}</label>
+                            {{ returnOFExperienceform.AttachmentLink }}
+                            {% for error in returnOFExperienceform.AttachmentLink.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="form-label cust-lbl">{{ returnOFExperienceform.Recommendation.label }}</label>
+                            {{ returnOFExperienceform.Recommendation(class="custom-select") }}
+                            {% for error in returnOFExperienceform.Recommendation.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if status == "RexEntry" %}
+                    <div class="row">
+                        <div>{{ returnOFExperienceform.submit(class="btn-Submit btn-primary float-end") }}</div>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% if status == "RexCommitee" or status == "ActinPlan" or status == "ReviewByCommittee" or status == "Closed" or
+    status == "Rejected" %}
+    <div class="card box-shadow mb-5">
+        <h6 class="card-header-title">Rex Committee</h6>
+        <div class="card-body">
+            <div class="card-div box-shadow">
+                <form method="POST" action="{{ url_for('updateRexCommittee', id=id) }}"
+                    action="/updateRexCommittee/{{ id }}">
+                    {{ rexCommitteeModelForm.csrf_token }}
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl"> {{
+                                rexCommitteeModelForm.ReviewCommiteeMember.label}}</label>
+                            {{ rexCommitteeModelForm.ReviewCommiteeMember(id="ReviewCommiteeMember",
+                            class="custom-select selectpicker cust-select") }}
+                            <div class="clearfix"></div>
+                            {% for error in rexCommitteeModelForm.ReviewCommiteeMember.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-label cust-lbl">IsitREX:</label>
+                            {{ rexCommitteeModelForm.IsitREX(id="IsitREX", class="custom-select selectpicker
+                            cust-select" ,onchange="toggleRexCommitteeFormVisibility()") }}
+                            <div class="clearfix"></div>
+                            {% for error in rexCommitteeModelForm.IsitREX.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group dependent-field-group col-md-4">
+                            <label class="form-label cust-lbl">{{
+                                rexCommitteeModelForm.Isfurtheranalysisrequired.label
+                                }}</label>
+                            {{ rexCommitteeModelForm.Isfurtheranalysisrequired }}
+                            {% for error in rexCommitteeModelForm.Isfurtheranalysisrequired.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group dependent-field-group col-md-4">
+                            <label class="form-label cust-lbl">{{ rexCommitteeModelForm.Mentor.label }}</label>
+                            {{ rexCommitteeModelForm.Mentor}}
+                            {% for error in rexCommitteeModelForm.Mentor.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group dependent-field-group col-md-4">
+                            <label class="form-label cust-lbl">{{ rexCommitteeModelForm.ActionBy.label }}</label>
+                            {{ rexCommitteeModelForm.ActionBy }}
+                            {% for error in rexCommitteeModelForm.ActionBy.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group dependent-field-group col-md-4">
+                            <label class="form-label cust-lbl">{{ rexCommitteeModelForm.QMSSpoc.label }}</label>
+                            {{ rexCommitteeModelForm.QMSSpoc }}
+                            {% for error in rexCommitteeModelForm.QMSSpoc.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group dependent-field-group col-md-4">
+                            <label class="form-label cust-lbl">{{ rexCommitteeModelForm.Technology.label }}</label>
+                            {{ rexCommitteeModelForm.Technology }}
+                            {% for error in rexCommitteeModelForm.Technology.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="form-label cust-lbl">{{ rexCommitteeModelForm.REXCommitteeComments.label
+                                }}</label>
+                            {{ rexCommitteeModelForm.REXCommitteeComments(class="custom-select") }}
+                            {% for error in rexCommitteeModelForm.REXCommitteeComments.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    {% if status == "RexCommitee" %}
+                    <div class="row">
+                        <div>{{ rexCommitteeModelForm.submit(class="btn-Submit btn-primary box-shadow float-end") }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if status == "ActinPlan" or status == "ReviewByCommittee" or status == "Closed" %}
+    <div class="card box-shadow mb-5">
+        <h6 class="card-header-title">Action Plan</h6>
+        <div class="card-body">
+            <div class="card-div box-shadow">
+                <form method="POST" action="{{ url_for('updatActionPlan', id=id) }}" action="/updatActionPlan/{{ id }}">
+                    {{ actionPlanModelForm.csrf_token }}
+                    <div class="row">
+                        <div class="form-group isRequireVisible col-md-4">
+                            <label class="form-label cust-lbl">{{ actionPlanModelForm.AttendeesOfRootCause.label
+                                }}</label>
+                            {{ actionPlanModelForm.AttendeesOfRootCause }}
+                            <div class="clearfix"></div>
+                            {% for error in actionPlanModelForm.AttendeesOfRootCause.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group isRequireVisible col-md-4">
+                            <label class="form-label  cust-lbl">Date:</label>
+                            {{ actionPlanModelForm.Date }}
+                            <div class="clearfix"></div>
+                            {% for error in actionPlanModelForm.Date.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group isRequireVisible col-md-4">
+                            <label class="form-label  cust-lbl">{{ actionPlanModelForm.FrequesncyOfIssue.label
+                                }}</label>
+                            {{ actionPlanModelForm.FrequesncyOfIssue }}
+                            {% for error in actionPlanModelForm.FrequesncyOfIssue.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group isRequireVisible col-md-4">
+                            <label class="form-label  cust-lbl">{{ actionPlanModelForm.EHSRisk.label }}</label>
+                            {{ actionPlanModelForm.EHSRisk}}
+                            {% for error in actionPlanModelForm.EHSRisk.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group isRequireVisible col-md-4">
+                            <label class="form-label cust-lbl">{{ actionPlanModelForm.AddDocumentsLink.label }}</label>
+                            {{ actionPlanModelForm.AddDocumentsLink }}
+                            {% for error in actionPlanModelForm.AddDocumentsLink.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group isRequireVisible col-md-8">
+                            <label class="form-label cust-lbl">{{ actionPlanModelForm.RootCause.label }}</label>
+                            {{ actionPlanModelForm.RootCause(class="custom-select") }}
+                            {% for error in actionPlanModelForm.RootCause.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group isRequireVisible col-md-8">
+                            <label class="form-label cust-lbl">{{ actionPlanModelForm.CorrectiveAction.label }}</label>
+                            {{ actionPlanModelForm.CorrectiveAction }}
+                            {% for error in actionPlanModelForm.CorrectiveAction.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group isNotRequireVisible col-md-4">
+                            <label class="form-label cust-lbl">{{ actionPlanModelForm.DocummentToUpdate.label
+                                }}</label>
+                            {{ actionPlanModelForm.DocummentToUpdate }}
+                            {% for error in actionPlanModelForm.DocummentToUpdate.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group isNotRequireVisible col-md-8">
+                            <label class="form-label  cust-lbl">{{ actionPlanModelForm.Remarks.label
+                                }}</label>
+                            {{ actionPlanModelForm.Remarks(class="custom-select") }}
+                            {% for error in actionPlanModelForm.Remarks.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group isNotRequireVisible col-md-4">
+                            <label class="form-label cust-lbl">{{ actionPlanModelForm.AttachmentLink.label
+                                }}</label>
+                            {{ actionPlanModelForm.AttachmentLink }}
+                            {% for error in actionPlanModelForm.AttachmentLink.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4 mt-3">
+                            <label class="form-label cust-lbl">{{
+                                actionPlanModelForm.ReportingManagerConfirmation.label
+                                }}</label>
+                            {{ actionPlanModelForm.ReportingManagerConfirmation(class="custom-control
+                            custom-checkbox
+                            m-0") }}
+                            {% for error in actionPlanModelForm.ReportingManagerConfirmation.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {% if status == "ActinPlan" %}
+                    <div class="row">
+                        <div>{{ actionPlanModelForm.submit(class="btn-Submit box-shadow btn-primary float-end") }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if status == "ReviewByCommittee" or status == "Closed" %}
+    <div class="card box-shadow mb-5">
+        <h6 class="card-header-title">Review By Committee</h6>
+        <div class="card-body">
+            <div class="card-div box-shadow">
+                <form method="POST" action="{{ url_for('updatReviewByCommittee', id=id) }}"
+                    action="/updatReviewByCommittee/{{ id }}">
+                    {{ reviewByCommitteeForm.csrf_token }}
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label class="form-label cust-lbl">{{ reviewByCommitteeForm.Remarks.label }}</label>
+                            {{ reviewByCommitteeForm.Remarks }}
+                            {% for error in reviewByCommitteeForm.Remarks.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if status == "ReviewByCommittee" %}
+                    <div class="row">
+                        <div>
+                            <div>{{ reviewByCommitteeForm.submit_sendback(class="btn-Submit box-shadow btn-primary
+                                float-end") }}
+                            </div>
+                            <div>{{ reviewByCommitteeForm.submit_save(class="btn-Submit box-shadow btn-primary
+                                float-end me-2") }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

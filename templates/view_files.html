@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Uploaded Files</h2>
+    <ul>
+        {% for file in files %}
+        <li>
+            <!-- The url_for function generates the correct URL for the uploaded_file route -->
+            <a target="_blank" href="{{ url_for('uploaded_file', filename=file) }}">{{ file }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Go Home</a>
+{% endblock %}

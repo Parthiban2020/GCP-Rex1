@@ -1,0 +1,193 @@
+.cust-select {
+    width: 100% !important;
+}
+
+.cust-lbl {
+    font-weight: 700;
+    color: #344767;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+    font-size: 12px;
+}
+
+.btn-light {
+    background: transparent;
+    color: #000;
+    box-shadow: none;
+    bottom: 10px;
+    /* left: -18px; */
+}
+
+.btn-light:hover {
+    background: transparent;
+    color: #000;
+    box-shadow: none;
+    bottom: 10px;
+    /* left: -18px; */
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+    outline: none !important;
+    outline-offset: none !important;
+    box-shadow: none;
+}
+
+.card-body {
+    padding-top: 0px;
+}
+
+.card-div {
+    /* background: #f8f9fa; */
+    background: #f0f4f5;
+    padding: 20px 20px;
+    border-radius: 10px;
+}
+
+.card-header-title{
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-size: 0.875rem !important;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 10px 15px 10px 15px;
+    border-bottom: none;
+    width: 60%;
+    position: relative;
+    top: -20px;
+    background-color: #344767;
+    margin: 0px auto;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+/* .card-header-title {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-size: 0.875rem !important;
+    font-weight: 700;
+    color: #344767;
+    padding: 20px 20px 0px 20px;
+    border-bottom: none;
+} */
+
+.table tr th {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    background: #344d71;
+    color: white;
+}
+
+.table tr td {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.btn-Submit {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    border: 0px solid transparent;
+    padding: 0.5rem 1rem;
+    line-height: 1.47;
+    border-radius: 0.125rem;
+}
+.box-shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.btn{
+    text-transform: none;
+}
+
+.navbar-search-input .form-control{
+    border-bottom: 1px solid #ff4a00 !important
+}
+/* Toast Msg Start*/
+#toast {
+    visibility: hidden;
+    max-width: 50px;
+    height: 50px;
+    margin: auto;
+    /* background-color: #62d493; */
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    position: fixed;
+    z-index: 1;
+    left: 0;right:0;
+    bottom: 30px;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+#toast #img{
+	width: 50px;
+	height: 50px;
+    float: left;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    background-color:#000;
+    color: #fff;
+}
+#toast #desc{ 
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+    overflow: hidden;
+	white-space: nowrap;
+}
+
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes expand {
+    from {min-width: 50px} 
+    to {min-width: 400px}
+}
+
+@keyframes expand {
+    from {min-width: 50px}
+    to {min-width: 400px}
+}
+@-webkit-keyframes stay {
+    from {min-width: 400px} 
+    to {min-width: 400px}
+}
+
+@keyframes stay {
+    from {min-width: 400px}
+    to {min-width: 400px}
+}
+@-webkit-keyframes shrink {
+    from {min-width: 400px;} 
+    to {min-width: 50px;}
+}
+
+@keyframes shrink {
+    from {min-width: 400px;} 
+    to {min-width: 50px;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 60px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 60px; opacity: 0;}
+}
+
+/* Toast Msg End*/
+
+    
